@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Royal Hub Mini Screen</title>
+<meta name="description" content="Royal Hub Mini Screen – private theatre in Ramachandrapuram for birthdays, anniversaries, proposals, kids' parties and movie nights. Packages from ₹2,400 for 2 hours.">
+<meta property="og:title" content="Royal Hub Mini Screen – Private Theatre in Ramachandrapuram">
+<meta property="og:description" content="Your celebration. Your screen. Just your people. Book on WhatsApp.">
+<meta property="og:image" content="assets/hero_bg.jpg">
+<meta name="theme-color" content="#0B0A0F">
+<link rel="icon" href="assets/logo_mono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Manrope:wght@400;500;600;700&family=Orbitron:wght@500;600&display=swap">
+<style>
+/* Layout: a dark private-cinema page — one gold light source per section, content on an 1280px stage */
+:root{
+  --bg:#0B0A0F; --surface:#16141C; --raised:#221F2A;
+  --gold:#F9C93A; --gold-l:#FDEB7A; --gold-d:#C99A1E;
+  --red:#6E1A28; --red-d:#4A0F1A;
+  --ivory:#F7F5F0; --ash:#C9C3D4; --muted:#8F889C; --green:#25D366;
+  --line:rgba(201,154,30,.45);
+  --grad:linear-gradient(110deg,#C99A1E 0%,#F9C93A 45%,#FDEB7A 75%,#F9C93A 100%);
+  --f-display:"Cinzel","Trajan Pro","Times New Roman",serif;
+  --f-body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --f-label:"Orbitron","Eurostile","Segoe UI",sans-serif;
+  --r:16px; --stage:1280px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ivory);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:calc(var(--stage) + 160px);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:900px){.wrap{padding-left:max(80px,env(safe-area-inset-left,0px));padding-right:max(80px,env(safe-area-inset-right,0px))}}
+section{position:relative;isolation:isolate}
+.band{padding-block:clamp(64px,8vw,104px)}
+
+/* type */
+.eyebrow{display:inline-flex;align-items:center;gap:16px;font-family:var(--f-label);font-weight:600;font-size:12px;line-height:18px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::after,.center .eyebrow::before{content:"";width:56px;height:1px;background:var(--grad)}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;margin:0;text-wrap:balance;letter-spacing:.01em}
+h2{font-size:clamp(30px,3.9vw,56px);line-height:1.12}
+h3{font-size:clamp(20px,1.6vw,24px);line-height:1.25}
+@media(max-width:899px){.eyebrow{gap:10px;letter-spacing:.18em}.eyebrow::after,.center .eyebrow::before{width:24px}}
+.gold{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--ash);font-size:clamp(16px,1.3vw,19px);margin:0;max-width:60ch}
+.head{display:grid;gap:18px;margin-bottom:clamp(36px,4vw,52px)}
+.center{text-align:center;justify-items:center}
+
+/* buttons */
+.btn{--h:56px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 26px;border-radius:12px;font:700 16px/1 var(--f-body);text-decoration:none;cursor:pointer;border:1.5px solid var(--gold);transition:transform .25s ease,box-shadow .25s ease,background-color .25s ease,filter .25s ease;white-space:nowrap}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-primary{background:var(--grad);color:var(--bg);border-color:transparent;box-shadow:0 6px 22px -6px rgba(249,201,58,.5)}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 10px 30px -6px rgba(249,201,58,.65)}
+.btn-outline{background:rgba(11,10,15,.35);color:var(--gold)}
+.btn-outline:hover{background:rgba(249,201,58,.1);transform:translateY(-2px)}
+.btn-row{display:flex;flex-wrap:wrap;gap:16px}
+.icon{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn-primary .icon{stroke:var(--bg)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(11,10,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;border-image:linear-gradient(90deg,transparent,rgba(249,201,58,.7),transparent) 1}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand img{width:44px;height:auto}
+.brand span{font:700 24px/1 var(--f-display);letter-spacing:.06em;padding-left:14px;border-left:1px solid rgba(249,201,58,.6)}
+.nav-links{display:flex;gap:44px;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-weight:500;font-size:16px;color:var(--ivory);position:relative;padding-block:6px}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s ease;transform-origin:left}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav .btn{--h:48px;padding:0 20px;font-size:15px}
+.menu-btn{display:none;width:48px;height:48px;align-items:center;justify-content:center;background:none;border:0;cursor:pointer;margin-right:-12px}
+.menu-btn .icon{width:26px;height:26px}
+@media(max-width:899px){.nav-links,.nav .btn{display:none}.menu-btn{display:flex}.brand span{font-size:20px}.brand img{width:36px}.nav .wrap{height:68px}}
+
+/* mobile menu */
+.menu{position:fixed;inset:0;z-index:70;background:rgba(11,10,15,.97);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 28px) max(16px,env(safe-area-inset-left,0px));overflow:hidden}
+.menu::before{content:"";position:absolute;right:-80px;bottom:120px;width:360px;height:360px;background:url(assets/logo_mono.png) center/contain no-repeat;opacity:.06;pointer-events:none}
+.menu-top{display:flex;justify-content:space-between;align-items:center;height:56px}
+.menu ul{list-style:none;margin:28px 0 auto;padding:0}
+.menu li{border-bottom:1px solid var(--line)}
+.menu li a{display:block;padding:20px 0;font:700 30px/1.2 var(--f-display);text-decoration:none}
+.menu .btn{width:100%}
+.menu p{margin:14px 0 0;text-align:center;color:var(--ash);font-size:15px}
+.menu[data-open] li{animation:slideIn .45s cubic-bezier(.2,.8,.2,1) both}
+.menu[data-open] li:nth-child(2){animation-delay:.06s}.menu[data-open] li:nth-child(3){animation-delay:.12s}.menu[data-open] li:nth-child(4){animation-delay:.18s}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px)}}
+
+/* hero */
+.hero{min-height:min(860px,calc(100svh - 76px));display:flex;align-items:center;overflow:hidden}
+.hero-media{position:absolute;inset:0 0 0 38%;z-index:-2}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:60% center;animation:screenOn 1.6s ease-out both}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--bg) 0%,rgba(11,10,15,.96) 38%,rgba(11,10,15,.35) 62%,rgba(11,10,15,0) 100%),linear-gradient(0deg,var(--bg) 0%,rgba(11,10,15,0) 30%)}
+.beam{position:absolute;z-index:-1;left:30%;top:6%;width:56%;height:22%;background:radial-gradient(closest-side,rgba(253,235,122,.38),transparent);filter:blur(30px);transform:rotate(-14deg);mix-blend-mode:screen;animation:beam 6s ease-in-out infinite alternate;pointer-events:none}
+.hero-copy{display:grid;gap:26px;padding-block:72px;max-width:760px}
+.hero h1{font-size:clamp(36px,5.2vw,76px);line-height:1.08}
+.hero h1 .w{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero .lead{font-size:clamp(17px,1.5vw,21px);color:rgba(247,245,240,.86);max-width:44ch}
+.trust{display:flex;flex-wrap:wrap;gap:12px 28px;list-style:none;margin:6px 0 0;padding:0;font-size:15px;color:rgba(247,245,240,.9)}
+.trust li{display:flex;align-items:center;gap:10px}
+.trust .icon{width:20px;height:20px}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:grid;justify-items:center;gap:12px;font:500 11px/1 var(--f-label);letter-spacing:.3em;text-decoration:none}
+.scroll-cue i{width:1px;height:44px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s ease-in-out infinite}
+.fade-up{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(6px)}}
+@keyframes screenOn{0%{opacity:0;filter:brightness(.2)}60%{filter:brightness(1.15)}100%{opacity:1;filter:none}}
+@keyframes beam{from{opacity:.6}to{opacity:1}}
+@keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+@media(max-width:899px){
+  .hero{min-height:0;display:block}
+  .hero-media{position:relative;inset:auto;height:clamp(260px,62vw,420px)}
+  .hero-media::after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,var(--bg))}
+  .hero::before,.beam,.scroll-cue{display:none}
+  .hero-copy{padding-block:8px 48px;gap:18px}
+  .hero .btn-row{display:grid}
+  .trust{display:grid;grid-template-columns:1fr 1fr;font-size:14px}
+}
+
+/* reveal */
+.rv{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.pre{opacity:0;transform:translateY(26px)}
+
+/* occasions */
+.occ-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 0 0 1px rgba(249,201,58,.4),0 18px 40px -18px rgba(249,201,58,.45)}
+.card-img{aspect-ratio:16/10;overflow:hidden;max-width:100%}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.card:hover .card-img img{transform:scale(1.05)}
+.card-body{padding:24px 26px 26px;display:grid;gap:8px;flex:1}
+.card-body p{margin:0;color:var(--ash);font-size:16px}
+.more{justify-self:end;align-self:end;margin-top:8px;display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:600;text-decoration:none;font-size:15px;padding-block:6px}
+.more .icon{width:18px;height:18px;transition:transform .25s}
+.more:hover .icon{transform:translateX(4px)}
+
+/* carousels (mobile) */
+.dots{display:none;justify-content:center;gap:8px;margin-top:20px}
+.dots i{width:8px;height:8px;border-radius:4px;background:rgba(249,201,58,.35);transition:width .3s,background .3s}
+.dots i.on{width:24px;background:var(--gold)}
+@media(max-width:899px){
+  .snap{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
+  .snap::-webkit-scrollbar{display:none}
+  .snap>*{scroll-snap-align:start;flex:0 0 78%}
+  .dots{display:flex}
+}
+
+/* why */
+.why{overflow:hidden}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:56px}
+.why-photo{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/4.4;max-width:100%;border:1px solid var(--line)}
+.why-photo img{width:100%;height:100%;object-fit:cover}
+.badge4k{position:absolute;left:24px;top:24px;display:flex;align-items:center;gap:16px;padding:14px 22px;border-radius:14px;background:rgba(11,10,15,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(249,201,58,.8);font:600 17px/1.2 var(--f-label);letter-spacing:.06em;animation:float 4s ease-in-out infinite}
+.badge4k .icon{width:34px;height:34px;padding-right:16px;border-right:1px solid rgba(249,201,58,.6);box-sizing:content-box}
+@keyframes float{50%{transform:translateY(-5px)}}
+.feats{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:44px 32px;margin-top:8px}
+.film{position:absolute;inset:44px 9% 108px;border:10px solid transparent;border-radius:46px;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box;z-index:-1;opacity:.85}
+.film::after{content:"";position:absolute;inset:-7px;border:4px dashed var(--bg);border-radius:46px}
+.feat{display:grid;justify-items:center;text-align:center;gap:12px}
+.ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--gold);box-shadow:0 0 16px rgba(249,201,58,.28)}
+.ring .icon{width:40px;height:40px}
+.feat p{margin:0;color:var(--ash);font-size:15px;max-width:24ch}
+@media(max-width:899px){.why-grid{grid-template-columns:1fr;gap:36px}.why-photo{aspect-ratio:16/11}.badge4k{left:14px;top:14px;transform:scale(.85);transform-origin:top left}.feats{gap:32px 14px}.film{display:none}.ring{width:76px;height:76px}.ring .icon{width:32px;height:32px}.feat h3{font-size:17px}}
+
+/* packages */
+.packages{overflow:hidden}
+.curtain-l,.curtain-r{position:absolute;top:0;width:clamp(120px,15vw,230px);height:clamp(380px,40vw,560px);background-size:cover;z-index:-1;pointer-events:none}
+.curtain-l{left:0;background-image:url(assets/curtain_left.jpg);-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent)}
+.curtain-r{right:0;background-image:url(assets/curtain_right.jpg);-webkit-mask-image:linear-gradient(270deg,#000 55%,transparent);mask-image:linear-gradient(270deg,#000 55%,transparent)}
+.seats{position:absolute;left:0;right:0;bottom:0;height:150px;background:url(assets/seats.jpg) center top/cover;z-index:-1;-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%);opacity:.9}
+.pk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;align-items:stretch;padding-top:22px}
+.ticket{position:relative;background:var(--surface);border:1px solid rgba(249,201,58,.75);border-radius:22px;padding:36px 32px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;transition:transform .4s ease,box-shadow .4s ease;transform-style:preserve-3d}
+.ticket::before,.ticket::after{content:"";position:absolute;width:30px;height:30px;border-radius:50%;background:var(--bg);border:1px solid rgba(249,201,58,.75);bottom:96px}
+.ticket::before{left:-16px;clip-path:inset(0 0 0 50%)}.ticket::after{right:-16px;clip-path:inset(0 50% 0 0)}
+.ticket:hover{box-shadow:0 22px 50px -24px rgba(249,201,58,.55)}
+.ticket.pop{border:1.5px solid var(--gold);box-shadow:0 0 16px rgba(249,201,58,.35),0 0 60px -10px rgba(249,201,58,.35)}
+.ticket.pop .shimmer{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
+.ticket.pop .shimmer::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(253,235,122,.12),transparent);animation:shimmer 5s ease-in-out infinite}
+@keyframes shimmer{0%,60%{left:-60%}100%{left:130%}}
+.ribbon{position:absolute;top:-19px;left:50%;transform:translateX(-50%);padding:9px 26px;background:linear-gradient(90deg,var(--red-d),var(--red),var(--red-d));border:1px solid var(--gold);border-radius:6px;font:600 13px/1 var(--f-label);letter-spacing:.2em;color:var(--gold);white-space:nowrap}
+.hrs{font:600 13px/1 var(--f-label);letter-spacing:.14em;border:1px solid var(--gold);border-radius:99px;padding:7px 16px}
+.ticket h3{font-size:clamp(26px,2.4vw,34px)}
+.divider{display:flex;align-items:center;gap:14px}
+.divider::before,.divider::after{content:"";width:56px;height:1px;background:rgba(249,201,58,.7)}
+.price{font:700 clamp(54px,5vw,72px)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.price-note{color:var(--ash);font-size:15px;margin:-6px 0 4px}
+.incl{list-style:none;margin:0;padding:0;display:grid;gap:12px;text-align:left;width:100%}
+.incl li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.4}
+.incl .icon{width:20px;height:20px;margin-top:1px}
+.tear{margin-top:auto;width:100%;border-top:2px dotted rgba(249,201,58,.7);padding-top:24px}
+.tear .btn{width:100%}
+.foot-note{text-align:center;color:var(--ash);font-size:15px;margin:40px 0 70px}
+@media(max-width:899px){.pk-grid{grid-template-columns:1fr;gap:44px;max-width:440px;margin-inline:auto}.curtain-l,.curtain-r{opacity:.45}}
+
+/* add-ons */
+.addon-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px}
+.addon-head .head{margin:0}
+.arrows{display:flex;gap:14px}
+.arrows button{width:56px;height:56px;border-radius:50%;border:1px solid var(--gold);background:rgba(11,10,15,.5);display:grid;place-items:center;cursor:pointer;transition:background .25s}
+.arrows button:hover{background:rgba(249,201,58,.12)}
+.strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 2px 18px;scroll-behavior:smooth}
+.strip::-webkit-scrollbar{display:none}
+.tile{flex:0 0 186px;scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:center;display:grid;grid-template-rows:auto 1fr auto;gap:12px;padding-bottom:18px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.tile:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 0 16px rgba(249,201,58,.35)}
+.tile img{aspect-ratio:186/164;width:100%;object-fit:cover}
+.tile b{font-weight:600;font-size:16px;line-height:1.3;padding-inline:10px}
+.tile span{justify-self:center;font:600 16px/1 var(--f-label);color:var(--gold);border:1px solid var(--gold);border-radius:99px;padding:7px 20px}
+.stage-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-top:28px}
+@media(max-width:899px){.arrows{display:none}.strip{margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}.tile{flex-basis:156px}}
+
+/* gallery */
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.chip{min-height:46px;padding:0 22px;border-radius:99px;border:1px solid var(--gold);background:transparent;color:var(--ivory);font:500 15px/1 var(--f-body);cursor:pointer;transition:background .25s,color .25s}
+.chip[aria-pressed="true"]{background:var(--grad);color:var(--bg);border-color:transparent;font-weight:700}
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(150px,16vw,230px);gap:16px}
+.shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in;padding:0;background:var(--raised);grid-column:span 3;transition:opacity .4s,transform .4s,border-color .3s}
+.shot.big{grid-column:span 6;grid-row:span 2}.shot.mid{grid-column:span 3;grid-row:span 2}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.shot:hover img{transform:scale(1.05)}.shot:hover{border-color:var(--gold)}
+.shot figcaption{position:absolute;inset:auto 0 0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(11,10,15,.9));text-align:left;font:500 12px/16px var(--f-label);letter-spacing:.18em;color:var(--ivory)}
+.shot figcaption::before{content:"";display:inline-block;width:2px;height:14px;background:var(--gold);margin-right:10px;vertical-align:-2px}
+.shot.dim{opacity:.18;transform:scale(.98)}
+@media(max-width:899px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:170px;gap:12px}.shot,.shot.mid{grid-column:span 1;grid-row:span 1}.shot.big{grid-column:span 2;grid-row:span 1;height:230px}.shot figcaption{font-size:11px;letter-spacing:.1em}}
+.lightbox{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);max-height:90vh}
+.lightbox::backdrop{background:rgba(5,4,8,.9)}
+.lightbox img{max-height:82vh;width:auto;margin:auto;border-radius:12px;border:1px solid var(--line)}
+.lightbox p{text-align:center;font:500 13px/1 var(--f-label);letter-spacing:.2em;color:var(--gold);margin:14px 0 0}
+.lb-close{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:max(14px,env(safe-area-inset-right,0px));width:48px;height:48px;border-radius:50%;border:1px solid var(--gold);background:var(--bg);display:grid;place-items:center;cursor:pointer}
+
+/* how to book */
+.steps-wrap{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+.steps{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;list-style:none;margin:0;padding:0;counter-reset:s}
+.reel{position:absolute;left:-40px;right:-40px;top:50%;height:14px;transform:translateY(-50%);border-radius:4px;background:repeating-linear-gradient(90deg,transparent 0 6px,var(--bg) 6px 12px) center/100% 5px no-repeat,linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-l));z-index:-1;clip-path:inset(0 var(--reel,100%) 0 0);transition:clip-path 1.6s cubic-bezier(.4,0,.2,1)}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px 26px;display:grid;justify-items:center;text-align:center;gap:14px;transition:border-color .5s,box-shadow .5s,opacity .5s}
+.step.lit{border-color:var(--gold);box-shadow:0 0 16px rgba(249,201,58,.35)}
+.num{display:flex;align-items:center;gap:14px;font:700 56px/1 var(--f-display)}
+.num::before,.num::after{content:"";width:34px;height:1px;background:rgba(249,201,58,.8)}
+.step .icon{width:52px;height:52px}
+.step h3{font-size:22px;line-height:28px}
+.step p{margin:0;color:var(--ash);font-size:16px;line-height:24px}
+.steps-cta{display:grid;justify-items:center;gap:14px;margin-top:40px}
+.steps-cta small{color:var(--ash);font-size:15px}
+.phone{width:290px;aspect-ratio:9/18.5;border-radius:44px;border:7px solid transparent;background:linear-gradient(#0B141A,#0B141A) padding-box,var(--grad) border-box;box-shadow:0 0 50px -10px rgba(249,201,58,.4);transform:rotate(-4deg);overflow:hidden;display:flex;flex-direction:column;font-size:14px}
+.phone header{background:#1F2C33;padding:16px 18px 12px;display:grid;gap:10px}
+.phone header b{font-size:12px}
+.chat-head{display:flex;align-items:center;gap:10px;font-weight:600;line-height:1.2}
+.chat-head img{width:38px;height:38px;border-radius:50%;background:var(--bg);border:1px solid var(--gold);object-fit:contain;padding:4px}
+.msgs{flex:1;padding:22px 14px;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:82%;padding:10px 12px 8px;border-radius:12px;line-height:1.4}
+.msg time{display:block;text-align:right;font-size:11px;color:#C8D1D6;margin-top:4px}
+.msg.me{align-self:flex-end;background:#005C4B}.msg.them{background:#202C33}
+.phone.play .msg{animation:pop .5s cubic-bezier(.2,.8,.2,1) both}.phone.play .msg.them{animation-delay:.9s}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.typebar{margin:0 14px 18px;display:flex;gap:10px;align-items:center}
+.typebar span{flex:1;background:#2A3942;border-radius:99px;padding:11px 16px;color:#8696A0}
+.typebar i{width:42px;height:42px;border-radius:50%;background:#00A884}
+@media(max-width:1100px){.steps-wrap{grid-template-columns:1fr}.phone{display:none}}
+@media(max-width:899px){.steps{grid-template-columns:1fr;gap:20px}.reel{display:none}.steps-cta .btn{width:100%}}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:72px;align-items:start}
+.faq-intro{position:sticky;top:120px;display:grid;gap:22px;justify-items:start}
+.faq-intro h2{font-size:clamp(40px,5vw,72px);line-height:1.05}
+.faq-list{display:grid;gap:16px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;transition:background .3s,border-color .3s}
+details[open]{background:var(--raised);border-color:var(--gold);box-shadow:inset 4px 0 0 var(--gold)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 26px;font:700 clamp(17px,1.5vw,21px)/1.35 var(--f-display)}
+summary::-webkit-details-marker{display:none}
+summary .icon{transition:transform .35s}
+details[open] summary .icon{transform:rotate(45deg)}
+summary:hover{color:var(--gold-l)}
+details p{margin:0;padding:0 26px 24px;color:var(--ash);font-size:16px;line-height:1.65;animation:open .35s ease}
+@keyframes open{from{opacity:0;transform:translateY(-6px)}}
+@media(max-width:899px){.faq-grid{grid-template-columns:1fr;gap:32px}.faq-intro{position:static}.faq-intro .btn{width:100%}summary{padding:18px 18px}details p{padding:0 18px 20px}}
+
+/* find us */
+.find-grid{display:grid;grid-template-columns:minmax(0,1.36fr) minmax(0,1fr);gap:32px;align-items:stretch}
+.map{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#121016;min-height:420px;display:block;text-decoration:none}
+.map svg.roads{position:absolute;inset:0;width:100%;height:100%}
+.map .town{position:absolute;left:58%;top:16%;color:var(--ash);font-weight:500}
+.pin{position:absolute;left:38%;top:62%;transform:translate(-50%,-100%);display:grid;justify-items:center}
+.pin .drop{width:84px;height:104px;position:relative;animation:drop 1s cubic-bezier(.3,1.5,.5,1) both}
+.pin .drop img{position:absolute;left:14px;top:14px;width:56px;height:56px;border-radius:50%;background:var(--bg);object-fit:contain;padding:6px}
+.pulse{position:absolute;left:50%;bottom:-10px;width:60px;height:60px;margin-left:-30px;border-radius:50%;border:1px solid var(--gold);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.4);opacity:.9}to{transform:scale(3.2);opacity:0}}
+@keyframes drop{from{transform:translateY(-60px);opacity:0}}
+.pin-label{position:absolute;top:calc(100% + 18px);white-space:nowrap;background:rgba(11,10,15,.9);border:1px solid var(--gold);border-radius:10px;padding:8px 16px;font-weight:600;font-size:15px}
+.map .open{position:absolute;right:16px;bottom:16px;font-size:14px;color:var(--gold);background:rgba(11,10,15,.85);border:1px solid var(--line);border-radius:99px;padding:8px 14px}
+.info{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:40px;display:grid;gap:8px;align-content:start}
+.info h2{font-size:clamp(32px,3.3vw,48px);margin:10px 0 12px}
+.rows{list-style:none;margin:0 0 20px;padding:0}
+.rows li{display:flex;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(201,154,30,.3);font-size:17px;line-height:1.45}
+.rows .icon{width:26px;height:26px}
+.info .btn-row .btn{flex:1}
+@media(max-width:899px){.find-grid{grid-template-columns:1fr}.map{min-height:300px}.info{padding:28px 20px}.info .btn-row{display:grid}}
+
+/* final cta */
+.finale{overflow:hidden;text-align:center;padding-block:clamp(90px,10vw,140px) clamp(140px,14vw,200px)}
+.finale::before{content:"";position:absolute;inset:-20% 15% 20%;background:radial-gradient(closest-side,rgba(253,235,122,.28),rgba(249,201,58,.08) 55%,transparent);z-index:-2}
+.drape{position:absolute;top:0;bottom:0;width:52%;background-size:cover;z-index:-1;transition:transform 1.4s cubic-bezier(.6,0,.2,1)}
+.drape.l{left:0;background-image:url(assets/curtain_left.jpg);background-position:right center;transform-origin:left;transform:translateX(-62%)}
+.drape.r{right:0;background-image:url(assets/curtain_right.jpg);background-position:left center;transform:translateX(62%)}
+.finale.closed .drape.l{transform:translateX(0)}.finale.closed .drape.r{transform:translateX(0)}
+.finale .seats{height:180px}
+.finale .stage{position:absolute;left:15%;right:15%;bottom:170px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-l),transparent)}
+.finale h2{font-size:clamp(36px,5.8vw,80px);line-height:1.08}
+.finale .lead{margin:22px auto 34px;color:rgba(247,245,240,.9);font-size:clamp(17px,1.6vw,22px)}
+.finale .btn{--h:64px;font-size:18px;padding:0 34px}
+.finale .call{display:block;margin-top:18px;color:var(--ash)}
+.finale.in .btn-primary{animation:once 1.2s ease 1.4s}
+@keyframes once{50%{box-shadow:0 0 0 10px rgba(249,201,58,.15),0 0 40px rgba(249,201,58,.6)}}
+@media(max-width:899px){.drape{width:36%;opacity:.65}.finale .btn{width:100%;white-space:normal}}
+
+/* footer */
+footer{background:var(--surface);border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--gold),transparent) 1;padding-block:56px calc(36px + env(safe-area-inset-bottom,0px))}
+.foot{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:48px}
+.foot-brand{display:grid;gap:14px;justify-items:start}
+.foot-brand img{width:230px}
+.foot h4{font:600 12px/18px var(--f-label);letter-spacing:.24em;color:var(--gold);margin:0 0 14px;text-transform:uppercase}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot a{text-decoration:none}.foot a:hover{color:var(--gold)}
+.social{display:flex;gap:14px;margin-bottom:12px}
+.social a{width:48px;height:48px;border:1px solid var(--gold);border-radius:12px;display:grid;place-items:center}
+.copy{margin-top:48px;padding-top:24px;border-top:1px solid rgba(201,154,30,.3);text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:899px){.foot{grid-template-columns:1fr 1fr;gap:32px 24px}.foot-brand,.foot>div:last-child{grid-column:1/-1}.foot-brand img{width:190px}footer{padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}}
+
+/* sticky mobile bar */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;grid-template-columns:1fr 1fr;gap:12px;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(11,10,15,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(249,201,58,.35);transform:translateY(110%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.dock.show{transform:none}
+.dock .btn{--h:52px;padding:0 12px}
+.btn-wa{background:var(--green);color:#06210F;border-color:transparent}
+.btn-wa .icon{stroke:#06210F}
+@media(max-width:899px){.dock{display:grid}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv.pre{opacity:1;transform:none}.drape{display:none}}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EntertainmentBusiness","name":"Royal Hub Mini Screen","description":"Private theatre for birthdays, anniversaries, proposals and movie nights","address":{"@type":"PostalAddress","streetAddress":"Main Road","addressLocality":"Ramachandrapuram","addressRegion":"Andhra Pradesh","postalCode":"533256","addressCountry":"IN"},"telephone":"+919000000000","openingHours":"Mo-Su 10:00-22:00","priceRange":"₹2,400 – ₹4,999"}</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2L9 9.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-nav" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M10 7.5v5l4-2.5z"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M11 4.7v14.6L6.4 16H3V8h3.4z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.4 18.4a9 9 0 0 0 0-12.8"/></symbol>
+  <symbol id="i-cake" viewBox="0 0 24 24"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></symbol>
+  <symbol id="i-pinheart" viewBox="0 0 24 24"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><path d="M12 13.5s-3-1.8-3-3.7A1.6 1.6 0 0 1 12 9a1.6 1.6 0 0 1 3 .8c0 1.9-3 3.7-3 3.7z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></symbol>
+  <symbol id="i-upi" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/><path d="m9 10 2 2 4-4"/></symbol>
+  <symbol id="i-party" viewBox="0 0 24 24"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-chevL" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-chevR" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-clapper" viewBox="0 0 24 24"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16"/><path d="M4 16h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Royal Hub Mini Screen, home"><img src="assets/logo_mono.png" alt="" width="44" height="46"><span>ROYAL HUB</span></a>
+    <ul class="nav-links">
+      <li><a href="#occasions">Occasions</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#location">Location</a></li>
+    </ul>
+    <a class="btn btn-primary" data-wa="general" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Book Now</a>
+    <button class="menu-btn" id="menu-open" aria-label="Open menu" aria-controls="menu" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" hidden aria-label="Main menu">
+  <div class="menu-top">
+    <a class="brand" href="#top"><img src="assets/logo_mono.png" alt="" width="36" height="38"><span>ROYAL HUB</span></a>
+    <button class="menu-btn" id="menu-close" aria-label="Close menu" style="display:flex"><svg class="icon"><use href="#i-close"/></svg></button>
+  </div>
+  <ul>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <a class="btn btn-primary" data-wa="general" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Book on WhatsApp</a>
+  <p>Open daily 10 AM to 10 PM</p>
+</nav>
+
+<main id="top">
+  <!-- 01 HERO -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-media"><img src="assets/hero_bg.jpg" alt="Inside Royal Hub: a private theatre with recliner seats, red curtains and a glowing big screen" fetchpriority="high"></div>
+    <div class="beam" aria-hidden="true"></div>
+    <div class="wrap" style="width:100%">
+      <div class="hero-copy">
+        <span class="eyebrow fade-up" style="animation-delay:.2s">Private theatre in Ramachandrapuram</span>
+        <h1 id="h1"><span class="w" style="animation-delay:.45s">Your</span> <span class="w" style="animation-delay:.53s">Celebration.</span><br><span class="w gold" style="animation-delay:.68s">Your</span> <span class="w gold" style="animation-delay:.76s">Screen.</span><br><span class="w" style="animation-delay:.9s">Just</span> <span class="w" style="animation-delay:.98s">Your</span> <span class="w" style="animation-delay:1.06s">People.</span></h1>
+        <p class="lead fade-up" style="animation-delay:1.25s">Birthdays, anniversaries, surprises and movie nights in a fully private, decorated theatre. Packages from ₹2,400 for 2 hours.</p>
+        <div class="btn-row fade-up" style="animation-delay:1.4s">
+          <a class="btn btn-primary" data-wa="general" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Check Availability</a>
+          <a class="btn btn-outline" data-tel href="tel:+919000000000"><svg class="icon"><use href="#i-phone"/></svg>Call Now</a>
+        </div>
+        <ul class="trust fade-up" style="animation-delay:1.55s">
+          <li><svg class="icon"><use href="#i-lock"/></svg>100% Private</li>
+          <li><svg class="icon"><use href="#i-monitor"/></svg>4K Ultra HD Screen</li>
+          <li><svg class="icon"><use href="#i-snow"/></svg>AC Hall</li>
+          <li><svg class="icon"><use href="#i-speaker"/></svg>Surround Sound</li>
+        </ul>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#occasions" aria-label="Scroll to occasions">SCROLL<i></i></a>
+  </section>
+
+  <!-- 02 OCCASIONS -->
+  <section class="band" id="occasions" aria-labelledby="occ-h">
+    <div class="wrap">
+      <div class="head center rv">
+        <span class="eyebrow">Made for your moments</span>
+        <h2 id="occ-h">Every Celebration Deserves a <span class="gold">Big Screen</span></h2>
+      </div>
+      <div class="occ-grid snap" data-dots="occ-dots">
+        <article class="card rv"><div class="card-img"><img src="assets/occ_birthday.jpg" alt="Theatre decorated with gold balloons and a birthday cake" loading="lazy"></div><div class="card-body"><h3>Birthday</h3><p>Surprise them with decor, cake and their favourite movie on the big screen.</p><a class="more" data-wa="occasion" data-item="Birthday" href="#" target="_blank" rel="noopener">Book this <svg class="icon"><use href="#i-arrow"/></svg></a></div></article>
+        <article class="card rv"><div class="card-img"><img src="assets/occ_anniversary.jpg" alt="Romantic setup with roses, candles and names on the screen" loading="lazy"></div><div class="card-body"><h3>Anniversary</h3><p>A private, romantic setup for just the two of you.</p><a class="more" data-wa="occasion" data-item="Anniversary" href="#" target="_blank" rel="noopener">Book this <svg class="icon"><use href="#i-arrow"/></svg></a></div></article>
+        <article class="card rv"><div class="card-img"><img src="assets/occ_proposal.jpg" alt="Candle path leading to a screen that reads Will you marry me" loading="lazy"></div><div class="card-body"><h3>Proposal</h3><p>The perfect quiet place to ask the big question.</p><a class="more" data-wa="occasion" data-item="Proposal" href="#" target="_blank" rel="noopener">Book this <svg class="icon"><use href="#i-arrow"/></svg></a></div></article>
+        <article class="card rv"><div class="card-img"><img src="assets/occ_kids.jpg" alt="Colourful balloons and a kids' birthday cake" loading="lazy"></div><div class="card-body"><h3>Kids' Party</h3><p>A safe, private space for little ones to celebrate.</p><a class="more" data-wa="occasion" data-item="Kids' Party" href="#" target="_blank" rel="noopener">Book this <svg class="icon"><use href="#i-arrow"/></svg></a></div></article>
+        <article class="card rv"><div class="card-img"><img src="assets/occ_bride.jpg" alt="Bride to Be sash, gold balloons and drinks" loading="lazy"></div><div class="card-body"><h3>Bride / Groom to Be</h3><p>Celebrate the big news with your closest friends.</p><a class="more" data-wa="occasion" data-item="Bride / Groom to Be" href="#" target="_blank" rel="noopener">Book this <svg class="icon"><use href="#i-arrow"/></svg></a></div></article>
+        <article class="card rv"><div class="card-img"><img src="assets/occ_movie.jpg" alt="Recliners with popcorn and a movie playing" loading="lazy"></div><div class="card-body"><h3>Movie Night</h3><p>Your movie, your snacks, your people.</p><a class="more" data-wa="occasion" data-item="Movie Night" href="#" target="_blank" rel="noopener">Book this <svg class="icon"><use href="#i-arrow"/></svg></a></div></article>
+      </div>
+      <div class="dots" id="occ-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- 03 WHY -->
+  <section class="band why" aria-labelledby="why-h">
+    <div class="wrap why-grid">
+      <div class="why-photo rv"><img src="assets/why_photo.jpg" alt="The big screen glowing in the dark theatre" loading="lazy"><div class="badge4k"><svg class="icon"><use href="#i-clapper"/></svg><span>4K<br>ULTRA HD</span></div></div>
+      <div>
+        <div class="head center rv">
+          <span class="eyebrow">Why Royal Hub</span>
+          <h2 id="why-h">A Cinema That's <span class="gold">Only Yours</span></h2>
+        </div>
+        <div class="feats">
+          <div class="film" aria-hidden="true"></div>
+          <div class="feat rv"><div class="ring"><svg class="icon"><use href="#i-lock"/></svg></div><h3>100% Private</h3><p>The whole hall is only for your group.</p></div>
+          <div class="feat rv"><div class="ring"><svg class="icon"><use href="#i-cake"/></svg></div><h3>Ready to Celebrate</h3><p>Decoration and cake arranged for you.</p></div>
+          <div class="feat rv"><div class="ring"><svg class="icon"><use href="#i-play"/></svg></div><h3>Watch Anything</h3><p>Bring your OTT login, pen drive or phone.</p></div>
+          <div class="feat rv"><div class="ring"><svg class="icon"><use href="#i-pinheart"/></svg></div><h3>Close to Home</h3><p>No need to travel to Kakinada or Rajahmundry.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PACKAGES -->
+  <section class="band packages" id="packages" aria-labelledby="pk-h">
+    <div class="curtain-l" aria-hidden="true"></div><div class="curtain-r" aria-hidden="true"></div><div class="seats" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="head center rv">
+        <span class="eyebrow">Packages</span>
+        <h2 id="pk-h">Simple Prices. <span class="gold">No Surprises.</span></h2>
+        <p class="lead">All packages include up to 4 guests, setup and cleanup.</p>
+      </div>
+      <div class="pk-grid">
+        <article class="ticket rv">
+          <span class="hrs">2 HRS</span><h3>Movie Time</h3>
+          <div class="divider"><svg class="icon"><use href="#i-clapper"/></svg></div>
+          <div class="price gold">₹2,400</div><p class="price-note">₹1,200 / hour · 2-hour minimum</p>
+          <ul class="incl"><li><svg class="icon"><use href="#i-check"/></svg>Private hall</li><li><svg class="icon"><use href="#i-check"/></svg>Big 4K screen and surround sound</li><li><svg class="icon"><use href="#i-check"/></svg>AC and comfortable seating</li></ul>
+          <div class="tear"><a class="btn btn-outline" data-wa="package" data-item="Movie Time (₹2,400, 2 hrs)" href="#" target="_blank" rel="noopener">Check Availability</a></div>
+        </article>
+        <article class="ticket pop rv">
+          <span class="shimmer" aria-hidden="true"></span><span class="ribbon">MOST POPULAR</span>
+          <span class="hrs">2 HRS</span><h3>Celebration</h3>
+          <div class="divider"><svg class="icon"><use href="#i-gift"/></svg></div>
+          <div class="price gold">₹2,999</div><p class="price-note">2 hours · up to 4 guests</p>
+          <ul class="incl"><li><svg class="icon"><use href="#i-check"/></svg>Everything in Movie Time</li><li><svg class="icon"><use href="#i-check"/></svg>Balloon decoration and name banner</li><li><svg class="icon"><use href="#i-check"/></svg>½ kg cake</li></ul>
+          <div class="tear"><a class="btn btn-primary" data-wa="package" data-item="Celebration (₹2,999, 2 hrs)" href="#" target="_blank" rel="noopener">Check Availability</a></div>
+        </article>
+        <article class="ticket rv">
+          <span class="hrs">3 HRS</span><h3>Grand Surprise</h3>
+          <div class="divider"><svg class="icon"><use href="#i-party"/></svg></div>
+          <div class="price gold">₹4,999</div><p class="price-note">3 hours · up to 4 guests</p>
+          <ul class="incl"><li><svg class="icon"><use href="#i-check"/></svg>Full theme decoration</li><li><svg class="icon"><use href="#i-check"/></svg>1 kg cake</li><li><svg class="icon"><use href="#i-check"/></svg>Fog entry</li><li><svg class="icon"><use href="#i-check"/></svg>LED name letters</li><li><svg class="icon"><use href="#i-check"/></svg>20 edited photos</li></ul>
+          <div class="tear"><a class="btn btn-outline" data-wa="package" data-item="Grand Surprise (₹4,999, 3 hrs)" href="#" target="_blank" rel="noopener">Check Availability</a></div>
+        </article>
+      </div>
+      <p class="foot-note">Extra hour ₹1,200 · Extra guest ₹100 · Pay ₹500 advance by UPI to confirm</p>
+    </div>
+  </section>
+
+  <!-- 05 ADD-ONS -->
+  <section class="band" aria-labelledby="ad-h">
+    <div class="wrap">
+      <div class="addon-head">
+        <div class="head rv">
+          <span class="eyebrow">Make it extra special</span>
+          <h2 id="ad-h">Add a Little <span class="gold">Magic</span></h2>
+          <p class="lead">Add any of these to your package when you book.</p>
+        </div>
+        <div class="arrows"><button type="button" data-scroll="-1" aria-label="Previous add-ons"><svg class="icon"><use href="#i-chevL"/></svg></button><button type="button" data-scroll="1" aria-label="Next add-ons"><svg class="icon"><use href="#i-chevR"/></svg></button></div>
+      </div>
+      <div class="strip" id="addons">
+        <div class="tile"><img src="assets/addon_led_letters.jpg" alt="" loading="lazy"><b>LED Name Letters</b><span>₹99</span></div>
+        <div class="tile"><img src="assets/addon_led_number.jpg" alt="" loading="lazy"><b>LED Number</b><span>₹99</span></div>
+        <div class="tile"><img src="assets/addon_balloons.jpg" alt="" loading="lazy"><b>Extra Balloons</b><span>₹299</span></div>
+        <div class="tile"><img src="assets/addon_roses.jpg" alt="" loading="lazy"><b>Rose Petal Path</b><span>₹399</span></div>
+        <div class="tile"><img src="assets/addon_video.jpg" alt="" loading="lazy"><b>Surprise Video</b><span>₹199</span></div>
+        <div class="tile"><img src="assets/addon_fog.jpg" alt="" loading="lazy"><b>Fog Entry</b><span>₹399</span></div>
+        <div class="tile"><img src="assets/addon_cake.jpg" alt="" loading="lazy"><b>Cake Upgrade (1 kg)</b><span>₹349</span></div>
+        <div class="tile"><img src="assets/addon_camera.jpg" alt="" loading="lazy"><b>Photo Session</b><span>₹499</span></div>
+      </div>
+      <div class="stage-line"></div>
+    </div>
+  </section>
+
+  <!-- 06 GALLERY -->
+  <section class="band" id="gallery" aria-labelledby="ga-h">
+    <div class="wrap">
+      <div class="head center rv">
+        <span class="eyebrow">Gallery</span>
+        <h2 id="ga-h">Take a Look <span class="gold">Inside</span></h2>
+        <p class="lead">Real setups from celebrations at Royal Hub Mini Screen.</p>
+        <div class="chips" role="group" aria-label="Filter photos">
+          <button class="chip" id="f-all" aria-pressed="true" data-f="all">All</button>
+          <button class="chip" id="f-birthday" aria-pressed="false" data-f="birthday">Birthday</button>
+          <button class="chip" id="f-anniversary" aria-pressed="false" data-f="anniversary">Anniversary</button>
+          <button class="chip" id="f-proposal" aria-pressed="false" data-f="proposal">Proposal</button>
+          <button class="chip" id="f-movie" aria-pressed="false" data-f="movie">Movie Night</button>
+        </div>
+      </div>
+      <div class="bento">
+        <button class="shot big rv" data-c="all movie"><figure style="margin:0;height:100%"><img src="assets/gal_hall.jpg" alt="The full private theatre hall" loading="lazy"><figcaption>THE HALL</figcaption></figure></button>
+        <button class="shot mid rv" data-c="birthday"><figure style="margin:0;height:100%"><img src="assets/gal_bday.jpg" alt="Birthday setup with balloons and cake" loading="lazy"><figcaption>BIRTHDAY</figcaption></figure></button>
+        <button class="shot mid rv" data-c="anniversary"><figure style="margin:0;height:100%"><img src="assets/occ_anniversary.jpg" alt="Anniversary setup with roses and candles" loading="lazy"><figcaption>ANNIVERSARY</figcaption></figure></button>
+        <button class="shot rv" data-c="movie"><figure style="margin:0;height:100%"><img src="assets/gal_screen.jpg" alt="Projector beam in the dark" loading="lazy"><figcaption>THE SCREEN</figcaption></figure></button>
+        <button class="shot rv" data-c="proposal"><figure style="margin:0;height:100%"><img src="assets/gal_proposal.jpg" alt="LOVE marquee letters in front of the screen" loading="lazy"><figcaption>PROPOSAL</figcaption></figure></button>
+        <button class="shot rv" data-c="birthday anniversary proposal"><figure style="margin:0;height:100%"><img src="assets/gal_fog.jpg" alt="Fog entry with candles" loading="lazy"><figcaption>FOG ENTRY</figcaption></figure></button>
+        <button class="shot rv" data-c="movie"><figure style="margin:0;height:100%"><img src="assets/gal_movie.jpg" alt="Movie night with popcorn" loading="lazy"><figcaption>MOVIE NIGHT</figcaption></figure></button>
+      </div>
+    </div>
+    <dialog class="lightbox" id="lb"><button class="lb-close" id="lb-close" aria-label="Close photo"><svg class="icon"><use href="#i-close"/></svg></button><img id="lb-img" alt=""><p id="lb-cap"></p></dialog>
+  </section>
+
+  <!-- 07 HOW TO BOOK -->
+  <section class="band" aria-labelledby="hb-h">
+    <div class="wrap">
+      <div class="head center rv">
+        <span class="eyebrow">How to book</span>
+        <h2 id="hb-h">Booked in <span class="gold">3 Simple Steps</span></h2>
+      </div>
+      <div class="steps-wrap">
+        <div>
+          <ol class="steps" id="steps">
+            <li class="reel" aria-hidden="true"></li>
+            <li class="step"><span class="num gold">01</span><svg class="icon"><use href="#i-chat"/></svg><h3>Message Us</h3><p>Send your date, time and number of guests on WhatsApp.</p></li>
+            <li class="step"><span class="num gold">02</span><svg class="icon"><use href="#i-upi"/></svg><h3>Pay ₹500 Advance</h3><p>A small UPI advance confirms your slot. Adjusted in your bill.</p></li>
+            <li class="step"><span class="num gold">03</span><svg class="icon"><use href="#i-party"/></svg><h3>Come and Celebrate</h3><p>We set everything up before you arrive.</p></li>
+          </ol>
+          <div class="steps-cta rv"><a class="btn btn-primary" data-wa="general" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Start on WhatsApp</a><small>Free cancellation up to 24 hours before.</small></div>
+        </div>
+        <div class="phone" id="phone" aria-label="Example WhatsApp booking chat">
+          <header><b>7:24</b><div class="chat-head"><img src="assets/logo_mono.png" alt="">Royal Hub<br>Mini Screen</div></header>
+          <div class="msgs">
+            <div class="msg me">Hi! Birthday on Saturday, 7 PM, 6 guests, Celebration package<time>7:20 PM ✓✓</time></div>
+            <div class="msg them">Your slot is available! Please pay ₹500 advance to confirm 🎉<time>7:22 PM</time></div>
+          </div>
+          <div class="typebar"><span>Message</span><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 FAQ -->
+  <section class="band" aria-labelledby="fq-h">
+    <div class="wrap faq-grid">
+      <div class="faq-intro rv">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="fq-h">Good to<br><span class="gold">Know</span></h2>
+        <p class="lead">Still have a question? We reply fast on WhatsApp.</p>
+        <a class="btn btn-outline" data-wa="question" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Ask on WhatsApp</a>
+      </div>
+      <div class="faq-list">
+        <details name="faq" class="rv"><summary>Is the theatre fully private?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. The whole hall is only for your group during your slot.</p></details>
+        <details name="faq" class="rv" open><summary>Do you provide movies?<svg class="icon"><use href="#i-plus"/></svg></summary><p>No. Bring your own OTT login (Netflix, Prime, Hotstar and others), a pen drive or your phone. We connect it for you.</p></details>
+        <details name="faq" class="rv"><summary>How many people can come?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Packages include up to 4 guests. You can add more, up to 10, at ₹100 per extra guest.</p></details>
+        <details name="faq" class="rv"><summary>Can we bring our own cake?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes, you can bring your own cake. Or choose a package that includes one.</p></details>
+        <details name="faq" class="rv"><summary>Can we bring food and snacks?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes, simple snacks and soft drinks are fine. Please keep the hall clean.</p></details>
+        <details name="faq" class="rv"><summary>What if I need to cancel?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Cancel 24 hours before for a full refund or a new date. Later cancellations are not refunded.</p></details>
+        <details name="faq" class="rv"><summary>Can we play our own photos and videos?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Yes. Send them on WhatsApp before your slot and we will play them on the big screen.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 FIND US -->
+  <section class="band" id="location" aria-labelledby="fu-h">
+    <div class="wrap find-grid">
+      <a class="map rv" data-maps href="https://www.google.com/maps/search/?api=1&query=Ramachandrapuram+Andhra+Pradesh+533256" target="_blank" rel="noopener" aria-label="Open Royal Hub location in Google Maps">
+        <svg class="roads" viewBox="0 0 760 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#3A3540" stroke-width="3" fill="none"><path d="M0 120 L760 60"/><path d="M0 300 L760 360"/><path d="M0 470 C200 440 500 520 760 480"/><path d="M140 0 L200 640"/><path d="M560 0 L520 640"/><path d="M0 200 L300 260 L760 220"/><path d="M340 0 C360 200 300 400 380 640"/><path d="M650 0 L700 640"/><path d="M0 560 L760 600"/><path d="M80 0 L40 640"/></g>
+          <g stroke="#C99A1E" stroke-opacity=".75" stroke-width="7" fill="none" stroke-linecap="round"><path d="M260 0 C300 220 220 420 300 640"/><path d="M0 380 C250 330 480 400 760 300"/></g>
+        </svg>
+        <span class="town">Ramachandrapuram</span>
+        <span class="pin"><span class="pulse"></span><span class="drop"><svg viewBox="0 0 96 120" width="84" height="104" aria-hidden="true"><path d="M48 118C48 118 6 72 6 46a42 42 0 0 1 84 0c0 26-42 72-42 72z" fill="#F9C93A" stroke="#FDEB7A" stroke-width="2"/></svg><img src="assets/logo_mono.png" alt=""></span><span class="pin-label">Royal Hub Mini Screen</span></span>
+        <span class="open">Open in Google Maps ↗</span>
+      </a>
+      <div class="info rv">
+        <span class="eyebrow">Find us</span>
+        <h2 id="fu-h">Closer Than <span class="gold">You Think</span></h2>
+        <ul class="rows">
+          <li><svg class="icon"><use href="#i-pin"/></svg><span data-cfg="address">Main Road, Ramachandrapuram, Andhra Pradesh 533256</span></li>
+          <li><svg class="icon"><use href="#i-clock"/></svg><span data-cfg="hours">Open daily, 10:00 AM to 10:00 PM</span></li>
+          <li><svg class="icon"><use href="#i-phone"/></svg><span data-cfg="phoneText" style="user-select:all">+91 90000 00000</span></li>
+          <li><svg class="icon"><use href="#i-car"/></svg><span>Easy to reach from Draksharama, Mandapeta and nearby villages</span></li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-primary" data-maps href="https://www.google.com/maps/search/?api=1&query=Ramachandrapuram+Andhra+Pradesh+533256" target="_blank" rel="noopener"><svg class="icon"><use href="#i-nav"/></svg>Get Directions</a>
+          <a class="btn btn-outline" data-tel href="tel:+919000000000"><svg class="icon"><use href="#i-phone"/></svg>Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 FINAL CTA -->
+  <section class="finale closed" id="finale" aria-labelledby="fn-h">
+    <div class="drape l" aria-hidden="true"></div><div class="drape r" aria-hidden="true"></div>
+    <div class="seats" aria-hidden="true"></div><div class="stage" aria-hidden="true"></div>
+    <div class="wrap">
+      <h2 id="fn-h">Ready to Make It<br><span class="gold">Special?</span></h2>
+      <p class="lead">Slots fill fast on weekends. Book yours today.</p>
+      <a class="btn btn-primary" data-wa="general" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>Check Availability on WhatsApp</a>
+      <span class="call">or call <span data-cfg="phoneText" style="user-select:all">+91 90000 00000</span></span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot-brand"><img src="assets/logo_full.png" alt="Royal Hub Mini Screen, 4K Ultra HD" loading="lazy" width="230" height="142"><span>Private Theatre in Ramachandrapuram</span></div>
+      <div><h4>Explore</h4><ul><li><a href="#occasions">Occasions</a></li><li><a href="#packages">Packages</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#location">Location</a></li></ul></div>
+      <div><h4>Visit</h4><ul><li data-cfg="address">Main Road, Ramachandrapuram, Andhra Pradesh 533256</li><li>Open daily 10 AM to 10 PM</li></ul></div>
+      <div><h4>Follow us</h4><div class="social"><a data-insta href="https://www.instagram.com/royalhubminiscreen" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon"><use href="#i-insta"/></svg></a><a data-wa="general" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon"><use href="#i-wa"/></svg></a></div><span>@royalhubminiscreen</span></div>
+    </div>
+    <p class="copy">© 2026 Royal Hub Mini Screen. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <a class="btn btn-wa" data-wa="general" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-wa"/></svg>WhatsApp</a>
+  <a class="btn btn-outline" data-tel href="tel:+919000000000"><svg class="icon"><use href="#i-phone"/></svg>Call Now</a>
+</div>
+
+<script>
+/* ===== Business details: change these in ONE place ===== */
+const CONFIG = {
+  whatsapp: "919000000000",            // country code + number, digits only (placeholder)
+  phone: "+919000000000",              // for Call buttons (placeholder)
+  phoneText: "+91 90000 00000",        // how the number is shown
+  address: "Main Road, Ramachandrapuram, Andhra Pradesh 533256",
+  hours: "Open daily, 10:00 AM to 10:00 PM",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Ramachandrapuram+Andhra+Pradesh+533256",
+  instagram: "https://www.instagram.com/royalhubminiscreen"
+};
+
+/* WhatsApp pre-filled messages */
+const MSG = {
+  general: () => "Hi Royal Hub! I'd like to check availability.\nDate:\nTime:\nNumber of guests:\nPackage:",
+  occasion: i => `Hi Royal Hub! I'd like to book for a ${i}.\nDate:\nTime:\nNumber of guests:\nPackage:`,
+  package: i => `Hi Royal Hub! I'd like to check availability for the ${i} package.\nDate:\nTime:\nNumber of guests:`,
+  question: () => "Hi Royal Hub! I have a question:"
+};
+document.querySelectorAll("[data-wa]").forEach(a => {
+  const fn = MSG[a.dataset.wa] || MSG.general;
+  a.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(fn(a.dataset.item))}`;
+});
+document.querySelectorAll("[data-tel]").forEach(a => a.href = "tel:" + CONFIG.phone);
+document.querySelectorAll("[data-maps]").forEach(a => a.href = CONFIG.mapsUrl);
+document.querySelectorAll("[data-insta]").forEach(a => a.href = CONFIG.instagram);
+document.querySelectorAll("[data-cfg]").forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v) el.textContent = v; });
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Mobile menu */
+const menu = document.getElementById("menu"), openBtn = document.getElementById("menu-open");
+const setMenu = on => { menu.hidden = !on; on ? menu.setAttribute("data-open","") : menu.removeAttribute("data-open"); openBtn.setAttribute("aria-expanded", on); document.body.style.overflow = on ? "hidden" : ""; };
+openBtn.addEventListener("click", () => setMenu(true));
+document.getElementById("menu-close").addEventListener("click", () => setMenu(false));
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+addEventListener("keydown", e => { if (e.key === "Escape" && !menu.hidden) setMenu(false); });
+
+/* Scroll reveal: only elements below the first screen start hidden; all show after 2.5s regardless */
+if ("IntersectionObserver" in window && !reduce) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -8% 0px" });
+  const groups = new Map();
+  document.querySelectorAll(".rv").forEach(el => {
+    if (el.getBoundingClientRect().top > innerHeight) {
+      const p = el.parentElement, i = groups.get(p) || 0; groups.set(p, i + 1);
+      el.style.transitionDelay = Math.min(i, 5) * 90 + "ms";
+      el.classList.add("pre"); io.observe(el);
+    }
+  });
+  setTimeout(() => document.querySelectorAll(".rv.pre").forEach(el => el.classList.remove("pre")), 2500);
+}
+
+/* Carousel dots (mobile) */
+document.querySelectorAll("[data-dots]").forEach(track => {
+  const dots = document.getElementById(track.dataset.dots), n = track.children.length;
+  dots.innerHTML = "<i></i>".repeat(n);
+  const upd = () => { const w = track.children[0].offsetWidth + 14; const i = Math.min(n - 1, Math.round(track.scrollLeft / w)); [...dots.children].forEach((d, k) => d.classList.toggle("on", k === i)); };
+  track.addEventListener("scroll", upd, { passive: true }); upd();
+});
+
+/* Add-on arrows */
+const strip = document.getElementById("addons");
+document.querySelectorAll("[data-scroll]").forEach(b => b.addEventListener("click", () => strip.scrollBy({ left: +b.dataset.scroll * 404, behavior: "smooth" })));
+
+/* Gallery filters + lightbox */
+const chips = document.querySelectorAll(".chip"), shots = document.querySelectorAll(".shot");
+chips.forEach(c => c.addEventListener("click", () => {
+  chips.forEach(x => x.setAttribute("aria-pressed", x === c));
+  const f = c.dataset.f;
+  shots.forEach(s => s.classList.toggle("dim", f !== "all" && !s.dataset.c.split(" ").includes(f)));
+}));
+const lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img"), lbCap = document.getElementById("lb-cap");
+shots.forEach(s => s.addEventListener("click", () => {
+  const img = s.querySelector("img"); lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = s.querySelector("figcaption").textContent;
+  if (lb.showModal) lb.showModal();
+}));
+document.getElementById("lb-close").addEventListener("click", () => lb.close());
+lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+
+/* How-to-book: film reel fills, steps light up; chat plays */
+const stepsEl = document.getElementById("steps"), steps = stepsEl.querySelectorAll(".step"), reel = stepsEl.querySelector(".reel");
+const runSteps = () => {
+  reel.style.setProperty("--reel", "0%");
+  steps.forEach((s, i) => setTimeout(() => s.classList.add("lit"), reduce ? 0 : 300 + i * 550));
+  document.getElementById("phone").classList.add("play");
+};
+/* Final CTA: curtains open */
+const finale = document.getElementById("finale");
+if ("IntersectionObserver" in window && !reduce) {
+  const once = (el, fn) => { const o = new IntersectionObserver(es => { if (es[0].isIntersecting) { fn(); o.disconnect(); } }, { threshold: .35 }); o.observe(el); };
+  once(stepsEl, runSteps);
+  once(finale, () => { finale.classList.remove("closed"); finale.classList.add("in"); });
+} else { runSteps(); finale.classList.remove("closed"); }
+
+/* Sticky mobile bar appears after the hero */
+const dock = document.getElementById("dock"), hero = document.querySelector(".hero");
+const onScroll = () => dock.classList.toggle("show", hero.getBoundingClientRect().bottom < 0);
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+</script>
+
+</body>
+</html>

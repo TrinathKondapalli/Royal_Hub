@@ -15,7 +15,7 @@ Open `index.html`, find `const CONFIG` near the bottom, and edit:
 - `address`, `hours`, `mapsUrl`, `instagram`
 
 Every WhatsApp button, Call button, map link and phone text updates from this.
-Also update the same number in the `tel:` links and the JSON-LD block in `<head>` (search for `9000000000`).
+Then search the file for `9000000000` and replace it everywhere (WhatsApp links, `tel:` links and the JSON-LD block in `<head>`).
 
 ## Replace the photos
 The current photos are AI-generated placeholders. Replace files in `assets/` with real photos,

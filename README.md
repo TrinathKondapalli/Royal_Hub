@@ -30,6 +30,13 @@ keeping the same file names (JPG, about 1200 px wide, under 200 KB each).
 
 ## What the page does
 - Every "Book / Check Availability" button opens WhatsApp with a pre-filled message (date, time, guests, package).
-- Mobile: menu, swipe carousels, sticky WhatsApp/Call bar after the hero.
-- Animations: hero entrance, scroll reveals, film-reel booking steps, curtains opening on the final section.
-  All animations switch off when the visitor's phone has "Reduce motion" on.
+- Mobile: menu, swipeable add-ons strip, sticky WhatsApp/Call bar after the hero.
+- Motion (the page plays like one private screening):
+  - Intro: 3-2-1 film countdown on closed curtains, under 2 seconds, once per visit. Any tap, key or scroll skips it.
+  - Hero: projector beam with drifting dust; the hall dims as you scroll away.
+  - Occasions ("Now Showing"): a pinned screen shows the photo of the occasion you scroll to.
+  - Packages: curtains slide in, tickets are dealt, prices count up, the ticket stub tears when you tap to book.
+  - Add-ons sit on a film strip; gallery photos switch on like a screen and zoom open.
+  - Final section: velvet curtains part as you scroll in.
+- No libraries and no build step. Everything is in `index.html`.
+- With "Reduce motion" on, or if JavaScript fails, the page is a calm, fully visible version and every booking link still works.
